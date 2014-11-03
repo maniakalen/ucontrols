@@ -111,7 +111,7 @@ public class DnsControl extends Plugin
                 }
                 this._tray.setToolTip(text);
             } catch (Exception err) {
-                System.err.println("Some kind of error");
+                err.printStackTrace(System.err);
             }
         }
     }
