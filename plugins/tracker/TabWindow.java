@@ -84,10 +84,10 @@ public class TabWindow extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if ("stop".equals(e.getActionCommand())) {
             t.cancelWorker(true);
-            setStopButtonActive();
+            setStartButtonActive();
         } else {
             this.getThread().execute();
-            setStartButtonActive();
+            setStopButtonActive();
         }
     }
 
