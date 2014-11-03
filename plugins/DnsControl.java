@@ -253,7 +253,7 @@ public class DnsControl extends Plugin
         public Settings() {
             super();
             this._dialog = new JDialog(this._frame, "Settings");
-            this._dialog.setSize(300,240);
+            this._dialog.setSize(300,241);
             this._prepareTabs();
         }
         @Override
@@ -284,7 +284,7 @@ public class DnsControl extends Plugin
                 this._serverName = new JTextField("Server name");
                 this._ips = new ArrayList<JTextField>();
                 this._addNewServerField();
-                this.setSize(new Dimension(300,150));
+                this.setSize(new Dimension(300,151));
                 this.setLayout(new BorderLayout());
                 this.add(this._serverName,BorderLayout.NORTH);
                 this._serversPanel = new JPanel();
@@ -298,6 +298,8 @@ public class DnsControl extends Plugin
             }
             JTextField _addNewServerField() {
                 JTextField field = new JTextField();
+                field.setSize(new Dimension(290, 28));
+                field.setMaximumSize(new Dimension(290, 28));
                 this._ips.add(field);
                 return field;
             }
@@ -327,6 +329,9 @@ public class DnsControl extends Plugin
                 }
                 public void actionPerformed(ActionEvent e) {
                     this._container._addNewServerFieldToPanel(this._container._addNewServerField());
+                    if (this._container._ips.size() >= 5) {
+                        ((JButton)e.getSource()).setEnabled(false);
+                    }
                     this._container._dialog.validate();
                 }
             }
@@ -353,7 +358,7 @@ public class DnsControl extends Plugin
                         server.addContent(ip);
                     }
                     servers.addContent(server);
-                    ((Config.ConfigXml)parent._src).save();
+                    parent._src.save();
                     parent._registerContentPane(parent.getFrame());
                 }
             }
