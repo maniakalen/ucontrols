@@ -12,6 +12,7 @@ public class Plugin implements PluginInterface
     protected HashMap<String, String> _list;
     protected Element _config;
     protected Config.ConfigSourceInstance _src;
+    protected static JMenu pluginsMenu;
     public void registerPlugin(JFrame frame) {}
     
     public void setName(String name) {
@@ -45,7 +46,7 @@ public class Plugin implements PluginInterface
         return p;
     }
     protected void _registerPluginMenu(JFrame frame) {
-        MainFrame f = (MainFrame)frame;
+
         JMenu m = new JMenu(this.getName());
         PluginItemAbstract p;
         for ( String key : this._list.keySet() ) {
@@ -56,8 +57,16 @@ public class Plugin implements PluginInterface
             
             item.addActionListener(p);
             m.add(item);
-        }     
-        f.getFrameMenuBar().add(m); 
+        }
+        this.addToPluginsMenu(frame, m);
+    }
+    protected void addToPluginsMenu(JFrame frame, JMenu m) {
+        if (Plugin.pluginsMenu == null) {
+            Plugin.pluginsMenu = new JMenu("Plugins");
+            MainFrame f = (MainFrame)frame;
+            f.getFrameMenuBar().add(Plugin.pluginsMenu);
+        }
+        Plugin.pluginsMenu.add(m);
     }
     public void postRegister() {}
     public void shutdown() {}
