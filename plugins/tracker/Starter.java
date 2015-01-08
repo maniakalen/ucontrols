@@ -45,7 +45,7 @@ public class Starter extends Plugin
             item.addActionListener(p);
             m.add(item);
         }     
-        f.getFrameMenuBar().add(m); 
+        this.addToPluginsMenu(frame, m);
     }
     class Closure extends Thread {
         private List<TabWindow> wnd;
